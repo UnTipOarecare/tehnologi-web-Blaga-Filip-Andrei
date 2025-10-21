@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Plata</title>
+    </head>
+
+    <body>
+        <h2>Pagina de Plata</h2>
+        <form action="comanda plasata.html" method="POST">
+            <h3>Date de livrare</h3>
+            <label for="nume-livrare">Nume complet:</label><br>
+            <input type="text" id="nume-livrare" name="nume-livrare" required><br><br>
+
+            <label for="adresa-livrare">Adresa:</label><br>
+            <input type="text" id="adresa-livrare" name="adresa-livrare" required><br><br>
+
+            <label for="oras-livrare">Oras:</label><br>
+            <input type="text" id="oras-livrare" name="oras-livrare" required><br><br>
+
+            <label for="cod-postal">Cod postal:</label><br>
+            <input type="text" id="cod-postal" name="cod-postal" required><br><br>
+
+            <label for="telefon-livrare">Telefon:</label><br>
+            <input type="tel" id="telefon-livrare" name="telefon-livrare" required><br><br>
+
+            <h3>Date de plata</h3>
+
+            <label for="tip-plata">Tip plata:</label><br>
+            <select id="tip-plata" name="tip-plata" required>
+                <option value="card">Card bancar</option>
+                <option value="ramburs">Ramburs</option>
+            </select><br><br>
+
+            <label for="card">Numar card:</label><br>
+            <input type="text" id="card" name="card" pattern="\d{16}"><br>
+            <small>Introduceti un numar de card valid (16 cifre).</small><br><br>
+
+            <label for="expirare">Data expirarii:</label><br>
+            <input type="month" id="expirare" name="expirare"><br><br>
+
+            <label for="cvv">CVV:</label><br>
+            <input type="text" id="cvv" name="cvv" pattern="\d{3}"><br>
+            <small>Introduceti codul CVV (3 cifre).</small><br><br>
+
+            <input type="submit" value="Finalizeaza comanda">
+        </form>
+
+        <br><br>
+        <a href="cos cumparaturi.html">Revizuieste cosul de cumparaturi</a>
+    </body>
+</html>
