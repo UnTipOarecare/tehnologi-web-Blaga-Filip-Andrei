@@ -3,79 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Produse — Magazin Calorifere</title>
+  <title>Magazin Calorifere — Acasa</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
 
   <header class="site-header">
-    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-left">
+      <a href="pagina principala.html" class="logo">CALORIFERE</a>
+    </div>
     <div class="header-right">
       <a href="cont.html" class="account-icon" aria-label="Cont">
-        <img src="cont.png" alt="Cont">
+        <img src="cont.png" alt="">
       </a>
       <a href="cos cumparaturi.html" class="cart-icon" aria-label="Cos">
-        <img src="cos.png" alt="Cos">
+        <img src="cos.png" alt="">
       </a>
     </div>
   </header>
 
-  <nav class="site-nav" aria-label="Meniu produse">
+  <nav class="site-nav" aria-label="Meniu principal">
     <ul>
-      <li><a href="pagina principala.html">Acasa</a></li>
       <li><a href="produse.html">Produse</a></li>
       <li><a href="informatii.html">Informatii</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <main class="grid-layout">
-    <section class="main-content">
-      <h1>Produse</h1>
-
+  <div class="grid-layout">
+    <main class="main-content">
+      <h1>Bine ai venit!</h1>
       <section class="products-section" aria-labelledby="produse-heading">
-        <h2 id="produse-heading">Catalog</h2>
-
+        <h2 id="produse-heading">Produse</h2>
         <div class="product-list">
-          <!-- Produs 1 -->
-          <article class="product-card" aria-labelledby="p1-title">
-            <a class="product-thumb" href="calorifer1.html">
+          <article class="product-card">
+            <a href="calorifer1.html" class="product-thumb">
               <img src="calorifer1.webp" alt="Calorifer din titaniu armat">
             </a>
-            <h3 id="p1-title" class="product-title"><a href="calorifer1.html">Calorifer din titaniu armat</a></h3>
+            <h3 class="product-title"><a href="calorifer1.html">Calorifer din titaniu armat</a></h3>
             <p class="product-price">419.99 lei</p>
             <form action="cos cumparaturi.html" method="get" class="add-to-cart-form">
               <button type="submit" class="btn">Adauga in cos</button>
             </form>
           </article>
 
-          <!-- Produs 2 -->
-          <article class="product-card" aria-labelledby="p2-title">
-            <a class="product-thumb" href="calorifer2.html">
+          <article class="product-card">
+            <a href="calorifer2.html" class="product-thumb">
               <img src="calorifer2.webp" alt="Calorifer Ebony">
             </a>
-            <h3 id="p2-title" class="product-title"><a href="calorifer2.html">Calorifer Ebony</a></h3>
+            <h3 class="product-title"><a href="calorifer2.html">Calorifer Ebony</a></h3>
             <p class="product-price">31,337.99 lei</p>
             <form action="cos cumparaturi.html" method="get" class="add-to-cart-form">
               <button type="submit" class="btn">Adauga in cos</button>
             </form>
           </article>
-
         </div>
       </section>
-    </section>
+    </main>
 
-    <aside class="sidebar" aria-labelledby="aside-products">
-      <h2 id="aside-products">Filtre</h2>
-      <p>NU EXISTĂ 👹</p>
+    <aside class="sidebar" aria-labelledby="aside-heading">
+      <h2 id="aside-heading">Informatii</h2>
+      <p>Suntem o companie serioasa. Pentru suport: <a href="mailto:contact@example.com">contact@example.com</a></p>
+      <p><a href="inregistrare.html" class="btn">inregistreaza-te</a></p>
     </aside>
-  </main>
+  </div>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year-products"></span> Magazin de Calorifere</p>
+    <p>&copy; <span id="year"></span> Magazin de Calorifere. Toate drepturile rezervate.</p>
+    <p><a href="informatii.html">Termeni si conditii</a></p>
   </footer>
 
-  <a href="#top" class="scroll-to-top">⬆️</a>
+  <a href="#top" class="scroll-to-top" aria-label="Mergi sus">⬆️</a>
 
-  <script> document.getElementById('year-products').textContent = new Date().getFullYear(); </script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

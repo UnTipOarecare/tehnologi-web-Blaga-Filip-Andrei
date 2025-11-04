@@ -1,27 +1,50 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="layout basic.css">
-    </head>
-    
-    <body>
-        <form action="produse.html">
-            <input type="submit" value="inapoi la magazin" />
-        </form>
-        
-        <h2>Pagina de Login</h2>
-        <form action="#" method="POST">
-            <label>Email:</label><br>
-            <input type="text" name="username"><br><br>
-            
-            <label>Parola:</label><br>
-            <input type="password" name="password"><br><br>
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
 
-            <input type="submit" value="Login">
-        </form>
+  <header class="site-header">
+    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-right">
+      <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
+      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+    </div>
+  </header>
 
-        <br><text>Nu ai cont?</text><br>
-        <a href="inregistrare.html">FATI</a>
-    </body>
+  <nav class="site-nav"><ul><li><a href="produse.html">Produse</a></li></ul></nav>
+
+  <main class="grid-layout">
+    <section class="main-content">
+      <h2>Login</h2>
+      <form action="produse.html" method="post">
+        <label for="login-email">Email:</label>
+        <input id="login-email" name="username" type="text" required>
+
+        <label for="login-pass">Parola:</label>
+        <input id="login-pass" name="password" type="password" required>
+
+        <input type="submit" value="Login" class="btn">
+      </form>
+
+      <p>Nu ai cont? <a href="inregistrare.html">inregistreaza-te</a></p>
+    </section>
+
+    <aside class="sidebar">
+      <h2>Ajutor</h2>
+      <p>Contact suport: <a href="mailto:contact@calorifere.example">contact@calorifere.example</a></p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year-login"></span> Magazin de Calorifere</p>
+  </footer>
+
+  <a href="#top" class="scroll-to-top">⬆️</a>
+  <script>document.getElementById('year-login').textContent = new Date().getFullYear();</script>
+</body>
 </html>

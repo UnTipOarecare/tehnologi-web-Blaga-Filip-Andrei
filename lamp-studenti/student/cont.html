@@ -1,23 +1,48 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Detalii Cont</title>
-        <link rel="stylesheet" type="text/css" href="layout basic.css">
-    </head>
-    
-    <body>
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Detalii Cont</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+
+  <header class="site-header">
+    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-right">
+      <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
+      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+    </div>
+  </header>
+
+  <nav class="site-nav"><ul><li><a href="produse.html">Produse</a></li></ul></nav>
+
+  <main class="grid-layout">
+    <section class="main-content">
+      <h1>Contul meu</h1>
         <!--Nota pentru sine, de facut redirectie spre login daca nu esti logat-->
 
-        <a href="cos cumparaturi.html" class="cart-icon">
-            <img src="cos.png" alt="Cos de cumparaturi">
-        </a>
-        <form action="produse.html">
-            <input type="submit" value="inapoi la magazin" />
-        </form>
+      <div class="account-info" style="margin-top:12px;">
+        <p><strong>Nume:</strong> —</p>
+        <p><strong>Telefon:</strong> —</p>
+        <h2>Istoric comenzi</h2>
+        <p>Nu exista comenzi.</p>
+      </div>
+    </section>
 
-        <text>nume cont</text><br>
-        <text>nr telefon</text><br>
-        <h2>Istoric comenzi:</h2>
-        <text>gol</text>
-    </body>
+    <aside class="sidebar" aria-labelledby="aside-account">
+      <h2 id="aside-account">Setari cont</h2>
+      <p><a href="inregistrare.html">inregistreaza-te</a></p>
+      <p><a href="login.html">Login</a></p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year-cont"></span> Magazin de Calorifere</p>
+  </footer>
+
+  <a href="#top" class="scroll-to-top">⬆️</a>
+  <script>document.getElementById('year-cont').textContent = new Date().getFullYear();</script>
+</body>
 </html>

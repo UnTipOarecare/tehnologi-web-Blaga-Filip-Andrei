@@ -1,30 +1,58 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Calorifer Din Titaniu</title>
-        <link rel="stylesheet" type="text/css" href="layout basic.css">
-    </head>
-    
-    <body>
-        <a href="cos cumparaturi.html" class="cart-icon">
-            <img src="cos.png" alt="Cos de cumparaturi">
-        </a>
-        <form action="produse.html">
-            <input type="submit" value="inapoi la magazin" />
-        </form>
-        <a href="cont.html" class="account-icon">
-            <img src="cont.png" alt="Detalii Cont">
-        </a>
-        
-        <div class="product-detail-container">
-            <img src="calorifer1.webp" alt="Calorifer din titaniu armat">
-            <div class="product-info">
-                <h2>Calorifer bun din titaniu armat aliat cu aluminiu si impuritati de zinc (no refunds)</h2>
-                <p class="price">419.99 lei</p>
-                <form action="cos cumparaturi.html">
-                    <input type="submit" value="Adauga in cos">
-                </form>
-            </div>
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calorifer din titaniu armat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+
+  <header class="site-header">
+    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-right">
+      <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
+      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Meniu">
+    <ul>
+      <li><a href="produse.html">Produse</a></li>
+      <li><a href="informatii.html">Informatii</a></li>
+    </ul>
+  </nav>
+
+  <main class="grid-layout">
+    <article class="main-content">
+      <div class="product-detail-container">
+        <img src="calorifer1.webp" alt="Calorifer din titaniu armat">
+        <div class="product-info">
+          <h2>Calorifer din titaniu armat</h2>
+          <p class="price">419.99 lei</p>
+          <p>Calorifer bun din titaniu armat aliat cu aluminiu si impuritati de zinc (no refunds)</p>
+
+          <form action="cos cumparaturi.html" method="get">
+            <button type="submit" class="btn">Adauga in cos</button>
+          </form>
         </div>
-    </body>
+      </div>
+    </article>
+
+    <aside class="sidebar" aria-labelledby="aside-detail1">
+      <h2 id="aside-detail1">Specificatii</h2>
+      <ul>
+        <li>Material: aliaj tratat</li>
+        <li>Garantie: 3 ani</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year-cal1"></span> Magazin de Calorifere</p>
+  </footer>
+
+  <a href="#top" class="scroll-to-top">⬆️</a>
+  <script>document.getElementById('year-cal1').textContent = new Date().getFullYear();</script>
+</body>
 </html>

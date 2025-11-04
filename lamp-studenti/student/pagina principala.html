@@ -1,23 +1,56 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Magazin De Calorifere</title>
-        <link rel="stylesheet" type="text/css" href="layout basic.css">
-    </head>
-    
-    <body>
-        <h1>BINE AI VENIT!</h1>
-        <a href="cos cumparaturi.html" class="cart-icon">
-            <img src="cos.png" alt="Cos de cumparaturi">
-        </a>
-        <form action="produse.html">
-            <input type="submit" value="Spre Magazin!">
-        </form>
-        <a href="cont.html" class="account-icon">
-            <img src="cont.png" alt="Detalii Cont">
-        </a>
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Magazin De Calorifere</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
 
-        <a href="informatii.html"><center>Informatii despre noi daca aveti nevoie de suport sau aveti nelamuriri</center></a><br>
-    </body>
+  <header class="site-header">
+    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-right">
+      <a href="cont.html" class="account-icon" aria-label="Cont">
+        <img src="cont.png" alt="Cont">
+      </a>
+      <a href="cos cumparaturi.html" class="cart-icon" aria-label="Cos">
+        <img src="cos.png" alt="Cos de cumparaturi">
+      </a>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Meniu principal">
+    <ul>
+      <li><a href="produse.html">Produse</a></li>
+      <li><a href="cont.html">Cont</a></li>
+    </ul>
+  </nav>
+
+  <main class="grid-layout">
+    <section class="main-content">
+      <h1>BINE AI VENIT!</h1>
+      <p style="margin-top:12px">Descopera selectia noastra de calorifere. Acceseaza <a href="produse.html">magazinul</a> pentru oferte.</p>
+
+      <div style="margin-top:16px; text-align:center;">
+        <a href="produse.html" class="btn">Spre Magazin</a>
+      </div>
+    </section>
+
+    <aside class="sidebar" aria-labelledby="aside-home">
+      <h2 id="aside-home">Suport</h2>
+      <p>Ai intrebari? <a href="informatii.html">Informatii</a></p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year-home"></span> Magazin de Calorifere</p>
+  </footer>
+
+  <a href="#top" class="scroll-to-top" aria-label="Mergi sus">⬆️</a>
+
+  <script>
+    document.getElementById('year-home').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
-    

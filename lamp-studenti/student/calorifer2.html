@@ -1,31 +1,59 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Calorifer Ebony</title>
-        <link rel="stylesheet" type="text/css" href="layout basic.css">
-    </head>
-    
-    <body>
-        <a href="cos cumparaturi.html" class="cart-icon">
-            <img src="cos.png" alt="Cos de cumparaturi">
-        </a>
-        <form action="produse.html">
-            <input type="submit" value="inapoi la magazin" />
-        </form>
-        <a href="cont.html" class="account-icon">
-            <img src="cont.png" alt="Detalii Cont">
-        </a>
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calorifer Ebony</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
 
-        <div class="product-detail-container">
+  <header class="site-header">
+    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-right">
+      <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
+      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+    </div>
+  </header>
+
+  <nav class="site-nav"><ul>
+    <li><a href="produse.html">Produse</a></li>
+    <li><a href="informatii.html">Informatii</a></li>
+  </ul></nav>
+
+  <main class="grid-layout">
+    <article class="main-content">
+      <div class="product-detail-container">
+        <div style="flex:0 0 40%;">
             <img src="calorifer2.webp" alt="Calorifer negru"><br>
             <img src="calorifer2.2.webp" alt="Calorifer negru ca noaptea"><br>
-            <div class="product-info">
-                <h2>Calorifer legendar pentru care s-au sacrificat 81 de gladiatori in valhalla ca sa procure materialele necesare pentru faurirea acestui calorifer</h2>
-                <p class="price">31337.99lei</p>
-                <form action="cos cumparaturi.html">
-                    <input type="submit" value="Adauga in cos">
-                </form>
-            </div>
         </div>
-    </body>
+        <div class="product-info">
+          <h2>Calorifer Ebony</h2>
+          <p class="price">31,337.99 lei</p>
+          <p>Calorifer legendar pentru care s-au sacrificat 82 de gladiatori in valhalla cu scop sa procure materialele necesare pentru faurirea acestui calorifer</p>
+
+          <form action="cos cumparaturi.html" method="get">
+            <button type="submit" class="btn">Adauga in cos</button>
+          </form>
+        </div>
+      </div>
+    </article>
+
+    <aside class="sidebar" aria-labelledby="aside-detail2">
+      <h2 id="aside-detail2">Specificatii</h2>
+      <ul>
+        <li>Material: oase de dragon cu cancer</li>
+        <li>Garantie: 300 ani</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year-cal2"></span> Magazin de Calorifere</p>
+  </footer>
+
+  <a href="#top" class="scroll-to-top">⬆️</a>
+  <script>document.getElementById('year-cal2').textContent = new Date().getFullYear();</script>
+</body>
 </html>

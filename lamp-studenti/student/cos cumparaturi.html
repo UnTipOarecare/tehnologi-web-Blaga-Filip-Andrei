@@ -1,22 +1,46 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Cos de Cumparaturi</title>
-        <link rel="stylesheet" type="text/css" href="layout basic.css">
-    </head>
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cos de cumparaturi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <header class="site-header">
+    <a class="logo" href="pagina principala.html">CALORIFERE</a>
+    <div class="header-right">
+      <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
+      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+    </div>
+  </header>
 
-    <body>
-        <form action="produse.html">
-            <input type="submit" value="inapoi la magazin" />
-        </form>
-        <a href="cont.html" class="account-icon">
-            <img src="cont.png" alt="Detalii Cont">
-        </a>
+  <nav class="site-nav">
+    <ul><li><a href="produse.html">Produse</a></li></ul>
+  </nav>
 
-        <h1>Cosul tau de cumparaturi</h1>
+  <main class="grid-layout">
+    <section class="main-content">
+      <h1>Cosul tau de cumparaturi</h1>
+      <p>Cosul este gol (in implementarea finala acesta va afisa produsele adaugate).</p>
 
-        <form action="plata.html">
-            <input type="submit" value="Spre plata" />
-        </form>
-    </body>
+      <form action="plata.html" method="get">
+        <button type="submit" class="btn">Spre plata</button>
+      </form>
+    </section>
+
+    <aside class="sidebar" aria-labelledby="aside-cart">
+      <h2 id="aside-cart">Suma plata</h2>
+      <p>Total: 0.00 lei</p>
+      <p><a href="produse.html">Continua cumparaturile</a></p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year-cart"></span> Magazin de Calorifere</p>
+  </footer>
+
+  <a href="#top" class="scroll-to-top">⬆️</a>
+  <script>document.getElementById('year-cart').textContent = new Date().getFullYear();</script>
+</body>
 </html>
