@@ -5,28 +5,46 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Cos de cumparaturi</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+  <script src="background-geom.js" defer></script>
 </head>
 <body id="top">
+  <div class="bg-geom" data-theme="vibrant" aria-hidden="true"></div>
+  
   <header class="site-header">
     <a class="logo" href="pagina principala.html">CALORIFERE</a>
     <div class="header-right">
       <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
-      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+      <a href="cos cumparaturi.html" class="cart-icon" aria-label="Cos">
+        <img src="cos.png" alt="Cos">
+        <span id="cart-count" aria-hidden="true" style="display:none"></span>
+      </a>
     </div>
   </header>
 
-  <nav class="site-nav">
-    <ul><li><a href="produse.html">Produse</a></li></ul>
+  <nav class="site-nav" aria-label="Meniu produse">
+    <ul>
+      <li><a href="pagina principala.html">Acasa</a></li>
+      <li><a href="produse.html">Produse</a></li>
+      <li><a href="informatii.html">Informatii</a></li>
+    </ul>
   </nav>
 
   <main class="grid-layout">
     <section class="main-content">
       <h1>Cosul tau de cumparaturi</h1>
-      <p>Cosul este gol (in implementarea finala acesta va afisa produsele adaugate).</p>
 
-      <form action="plata.html" method="get">
-        <button type="submit" class="btn">Spre plata</button>
-      </form>
+      <div id="cart-items" style="margin-top:12px;">
+        <!-- cart.js va popula acest container -->
+      </div>
+
+      <div style="margin-top:18px;">
+        <p id="cart-total">Total: 0.00 lei</p>
+        <div style="display:flex;gap:10px;margin-top:8px;">
+          <a href="produse.html" class="btn" style="background:#7f8c8d">Continua cumparaturile</a>
+          <button id="checkout-btn" class="btn" type="button">Spre plata</button>
+        </div>
+      </div>
     </section>
 
     <aside class="sidebar" aria-labelledby="aside-cart">

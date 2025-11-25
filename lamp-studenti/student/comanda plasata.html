@@ -5,18 +5,30 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Comanda Plasata</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+  <script src="background-geom.js" defer></script>
 </head>
 <body id="top">
+  <div class="bg-geom" data-theme="vibrant" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="logo" href="pagina principala.html">CALORIFERE</a>
     <div class="header-right">
       <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
-      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+      <a href="cos cumparaturi.html" class="cart-icon" aria-label="Cos">
+        <img src="cos.png" alt="Cos">
+        <span id="cart-count" aria-hidden="true" style="display:none"></span>
+      </a>
     </div>
   </header>
 
-  <nav class="site-nav"><ul><li><a href="produse.html">Produse</a></li></ul></nav>
+  <nav class="site-nav" aria-label="Meniu produse">
+    <ul>
+      <li><a href="pagina principala.html">Acasa</a></li>
+      <li><a href="produse.html">Produse</a></li>
+      <li><a href="informatii.html">Informatii</a></li>
+    </ul>
+  </nav>
 
   <main class="grid-layout">
     <section class="main-content">

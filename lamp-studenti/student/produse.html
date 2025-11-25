@@ -5,17 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Produse — Magazin Calorifere</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+  <script src="background-geom.js" defer></script>
 </head>
 <body id="top">
+  <div class="bg-geom" data-theme="vibrant" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="logo" href="pagina principala.html">CALORIFERE</a>
     <div class="header-right">
-      <a href="cont.html" class="account-icon" aria-label="Cont">
-        <img src="cont.png" alt="Cont">
-      </a>
+      <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
       <a href="cos cumparaturi.html" class="cart-icon" aria-label="Cos">
         <img src="cos.png" alt="Cos">
+        <span id="cart-count" aria-hidden="true" style="display:none"></span>
       </a>
     </div>
   </header>
@@ -37,27 +39,27 @@
 
         <div class="product-list">
           <!-- Produs 1 -->
-          <article class="product-card" aria-labelledby="p1-title">
+          <article class="product-card" data-id="p1" data-title="Calorifer din titaniu armat" data-price="419.99" data-img="calorifer1.webp" aria-labelledby="p1-title">
             <a class="product-thumb" href="calorifer1.html">
               <img src="calorifer1.webp" alt="Calorifer din titaniu armat">
             </a>
             <h3 id="p1-title" class="product-title"><a href="calorifer1.html">Calorifer din titaniu armat</a></h3>
             <p class="product-price">419.99 lei</p>
-            <form action="cos cumparaturi.html" method="get" class="add-to-cart-form">
-              <button type="submit" class="btn">Adauga in cos</button>
-            </form>
+            <div class="add-to-cart-wrap">
+              <button type="button" class="btn add-to-cart-btn">Adauga in cos</button>
+            </div>
           </article>
 
           <!-- Produs 2 -->
-          <article class="product-card" aria-labelledby="p2-title">
+          <article class="product-card" data-id="p2" data-title="Calorifer Ebony" data-price="31337.99" data-img="calorifer2.webp" aria-labelledby="p2-title">
             <a class="product-thumb" href="calorifer2.html">
               <img src="calorifer2.webp" alt="Calorifer Ebony">
             </a>
             <h3 id="p2-title" class="product-title"><a href="calorifer2.html">Calorifer Ebony</a></h3>
             <p class="product-price">31,337.99 lei</p>
-            <form action="cos cumparaturi.html" method="get" class="add-to-cart-form">
-              <button type="submit" class="btn">Adauga in cos</button>
-            </form>
+            <div class="add-to-cart-wrap">
+              <button type="button" class="btn add-to-cart-btn">Adauga in cos</button>
+            </div>
           </article>
 
         </div>

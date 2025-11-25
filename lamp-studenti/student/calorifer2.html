@@ -6,23 +6,35 @@
   <title>Calorifer Ebony</title>
   <link rel="stylesheet" href="styles.css">
   <script src="imagini produse.js" defer></script>
+  <script src="cart.js" defer></script>
+  <script src="background-geom.js" defer></script>
 </head>
+
 <body id="top">
+  <div class="bg-geom" data-theme="vibrant" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="logo" href="pagina principala.html">CALORIFERE</a>
     <div class="header-right">
       <a href="cont.html" class="account-icon"><img src="cont.png" alt="Cont"></a>
-      <a href="cos cumparaturi.html" class="cart-icon"><img src="cos.png" alt="Cos"></a>
+      <a href="cos cumparaturi.html" class="cart-icon" aria-label="Cos">
+        <img src="cos.png" alt="Cos">
+        <span id="cart-count" aria-hidden="true" style="display:none"></span>
+      </a>
     </div>
   </header>
 
-  <nav class="site-nav"><ul>
-    <li><a href="produse.html">Produse</a></li>
-    <li><a href="informatii.html">Informatii</a></li>
-  </ul></nav>
+  <nav class="site-nav" aria-label="Meniu produse">
+    <ul>
+      <li><a href="pagina principala.html">Acasa</a></li>
+      <li><a href="produse.html">Produse</a></li>
+      <li><a href="informatii.html">Informatii</a></li>
+    </ul>
+  </nav>
 
   <main class="grid-layout">
+    <body class="products-page"></body>
+
     <article class="main-content">
       <div class="product-detail-container">
         <div class="image-slider">
@@ -35,10 +47,17 @@
         <div class="product-info">
           <h2>Calorifer Ebony</h2>
           <p class="price">31,337.99 lei</p>
-          <p>Calorifer legendar pentru care s-au sacrificat 84 de gladiatori in valhalla cu scop sa procure materialele necesare pentru faurirea acestui calorifer</p>
+          <p>Calorifer legendar pentru care s-au sacrificat 85 de gladiatori in valhalla cu scop sa procure materialele necesare pentru faurirea acestui calorifer</p>
 
-          <form action="cos cumparaturi.html" method="get">
-            <button type="submit" class="btn">Adauga in cos</button>
+          <form class="product-detail-actions" onsubmit="return false;">
+            <button type="button"
+                    class="btn add-to-cart-detail"
+                    data-id="p2"
+                    data-title="Calorifer Ebony"
+                    data-price="31337.99"
+                    data-img="calorifer2.webp">
+              Adauga in cos
+            </button>
           </form>
         </div>
       </div>
