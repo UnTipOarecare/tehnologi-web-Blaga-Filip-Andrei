@@ -1,0 +1,298 @@
+dar mai intai in docker:
+docker run --name MariaDB_container -e MYSQL_ROOT_PASSWORD=parola -p 3307:3306 -d mariadb
+
+
+
+apoi cand facem initial data de baze:
+create database Blaga_Filip_Andrei;
+
+
+
+si de aici cancer:
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    parola VARCHAR(255) NOT NULL,
+    nume VARCHAR(255),
+    email VARCHAR(255),
+    rol ENUM('admin', 'client') DEFAULT 'client'
+);
+
+CREATE TABLE categorii (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    denumire VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE produse (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    denumire VARCHAR(255) NOT NULL,
+    descriere TEXT,
+    pret DECIMAL(10,2),
+    id_categorie INT,
+    FOREIGN KEY (id_categorie) REFERENCES categorii(id)
+);
+
+CREATE TABLE comenzi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_utilizator INT,
+    data_comenzii DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('plasata', 'in livrare', 'livrata') DEFAULT 'plasata',
+    FOREIGN KEY (id_utilizator) REFERENCES user(id)
+);
+
+CREATE TABLE detalii_comenzi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_comanda INT,
+    id_produs INT,
+    cantitate INT,
+    FOREIGN KEY (id_comanda) REFERENCES comenzi(id),
+    FOREIGN KEY (id_produs) REFERENCES produse(id)
+);
+
+CREATE TABLE recenzii (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_produs INT,
+    id_utilizator INT,
+    rating INT CHECK (rating >= 0 AND rating <= 5),
+    comentariu TEXT,
+    FOREIGN KEY (id_produs) REFERENCES produse(id),
+    FOREIGN KEY (id_utilizator) REFERENCES user(id)
+);
+
+DELIMITER $$
+
+CREATE PROCEDURE populeaza_categorii() #cream functia
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    WHILE i <= 50 DO
+        INSERT INTO categorii (denumire) VALUES
+        (CONCAT('Categorie ', i)); #CONCAT lipeste un string (text) si variabila i aici
+        SET i = i + 1; #updatam variabila i
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL populeaza_categorii(); #apelam functia
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE populeaza_produse()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE categorie_id INT DEFAULT 1;
+    WHILE i <= 50 DO
+        INSERT INTO produse (denumire, descriere, pret, id_categorie) VALUES
+        (CONCAT('Produs ', i),
+        CONCAT('Descrierea produsului ', i),
+        ROUND(RAND() * (500 - 100) + 100, 2), #functie de rotunjit
+        categorie_id);
+
+        SET categorie_id = (categorie_id % 10) + 1;
+        SET i = i + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+
+CALL populeaza_produse();
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE populeaza_users()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    WHILE i <= 50 DO
+        INSERT INTO user (username, parola, nume, email, rol) VALUES
+        (CONCAT('user', i),
+        SHA2(CONCAT('parola', i), 256), #functia SHA2 hash-uieste textul
+        CONCAT('User ', i),
+        CONCAT('user', i, '@example.com'),
+        IF(i = 1, 'admin', 'client'));
+        SET i = i + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL populeaza_users();
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE populeaza_comenzi()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE user_id INT DEFAULT 1;
+    WHILE i <= 50 DO
+        INSERT INTO comenzi (id_utilizator, status) VALUES
+        (user_id, IF(i % 2 = 0, 'plasata', 'livrata')); #o livrare va fi livrata si urmatoarea va aparea plasata si se repeta
+
+        SET user_id = (user_id % 50) + 1;
+        SET i = i + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL populeaza_comenzi();
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE populeaza_recenzii()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE produs_id INT DEFAULT 1;
+    DECLARE user_id INT DEFAULT 1;
+    WHILE i <= 50 DO
+        INSERT INTO recenzii (id_produs, id_utilizator, rating, comentariu) VALUES
+        (produs_id, user_id, FLOOR(RAND() * 5) + 1,
+        CONCAT('Comentariu pentru produsul ', produs_id, ' de la utilizatorul ', user_id));
+
+        SET produs_id = (produs_id % 50) + 1;
+        SET user_id = (user_id % 50) + 1;
+        SET i = i + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL populeaza_recenzii();
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE populeaza_detalii_comenzi()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE comanda_id INT DEFAULT 1;
+    DECLARE produs_id INT DEFAULT 1;
+    DECLARE cantitate INT DEFAULT 1;
+
+    WHILE i <= 50 DO
+        SET produs_id = FLOOR(RAND() * 50) + 1;
+        SET cantitate = FLOOR(RAND() * 5) + 1;
+
+        INSERT INTO detalii_comenzi (id_comanda, id_produs, cantitate)
+        VALUES (comanda_id, produs_id, cantitate);
+
+        SET comanda_id = (comanda_id % 50) + 1;
+        SET i = i + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL populeaza_detalii_comenzi();
+
+#Aratam toate comenzile care au fost livrate
+SELECT * FROM comenzi
+WHERE status = 'livrata';
+
+#selecteaza toate produsele cu pretul intre 100 si 200 de ce moneda o fi
+SELECT * FROM produse WHERE pret BETWEEN 100 AND 200;
+
+#arata idul utilizatorului, numele si
+SELECT c.id, u.nume, c.status
+FROM comenzi c
+JOIN user u ON c.id_utilizator = u.id;
+
+#aratam toate produsele ordonate dupa pret in ordine descrescatoare
+SELECT * FROM produse ORDER BY pret DESC;
+
+#aratam toti utilizatorii si cate comenzi au plasat fiecare
+SELECT id_utilizator, COUNT(*) AS numar_comenzi
+FROM comenzi
+GROUP BY id_utilizator;
+
+#aratam toti utilizatoii care au textul 'user1' in username
+SELECT username FROM user WHERE username LIKE 'user1%';
+
+#aratam denumirea produsului si cantitatea unei comenzi specifice (dupa id)
+SELECT p.denumire, d.cantitate
+FROM produse p
+JOIN detalii_comenzi d ON p.id = d.id_produs
+WHERE d.id_comanda = 39;
+
+#calculam media aritmetica a tuturor ratingurilor sa aflam ratingul in medie si sortam de la rating mid la mare
+SELECT p.denumire, AVG(r.rating) AS rating_mediu
+FROM produse p
+JOIN recenzii r ON p.id = r.id_produs
+GROUP BY p.id
+ORDER BY rating_mediu DESC;
+
+#afisam numele clientului, produsului si id-ul comenzii tuturor comenzilor si ordonam dupa id
+SELECT u.nume AS client, p.denumire AS produs, c.id AS comanda_id
+FROM comenzi c
+JOIN user u ON c.id_utilizator = u.id
+JOIN detalii_comenzi dc ON c.id = dc.id_comanda
+JOIN produse p ON dc.id_produs = p.id
+ORDER BY c.id;
+
+#aratam toate recenziile pentru produsele selectate dupa id ordonate dupa rating descrescator
+SELECT *
+FROM recenzii
+WHERE id_produs IN (1, 2, 3)
+ORDER BY rating DESC;
+
+#Utilizator admin cu toate permisiunile si GRANT OPTION
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'parola1';
+GRANT ALL PRIVILEGES ON Blaga_Filip_Andrei.* TO 'admin'@'localhost' WITH GRANT OPTION;
+
+#Utilizator doar cu drepturi de citire la produse și categorii
+CREATE USER 'client_basic'@'localhost' IDENTIFIED BY 'parola2';
+GRANT SELECT ON Blaga_Filip_Andrei.produse TO 'client_basic'@'localhost';
+GRANT SELECT ON Blaga_Filip_Andrei.categorii TO 'client_basic'@'localhost';
+
+#Utilizator care poate gestiona comenzile
+CREATE USER 'angajat_comenzi'@'localhost' IDENTIFIED BY 'parola3';
+GRANT SELECT, INSERT, UPDATE ON Blaga_Filip_Andrei.comenzi TO 'angajat_comenzi'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON Blaga_Filip_Andrei.detalii_comenzi TO 'angajat_comenzi'@'localhost';
+
+#Utilizator care poate adauga recenzii si atat, destul de inutil
+CREATE USER 'user_care_da_doar_reviewuri'@'localhost' IDENTIFIED BY 'parola4';
+GRANT SELECT, INSERT ON Blaga_Filip_Andrei.recenzii TO 'user_care_da_doar_reviewuri'@'localhost';
+
+#Utilizator care poate modifica produsele
+CREATE USER 'angajat_care_se_ocupa_de_stoc'@'localhost' IDENTIFIED BY 'parola5';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Blaga_Filip_Andrei.produse TO 'angajat_care_se_ocupa_de_stoc'@'localhost';
+
+SELECT * from user;
+
+CREATE INDEX idx_username_search ON user(username);
+
+DELIMITER $$
+
+CREATE PROCEDURE comenzi_utilizator(IN utilizator_id INT)
+BEGIN
+    SELECT
+        c.id AS id_comanda,
+        c.data_comenzii,
+        c.status,
+        p.denumire AS produs,
+        d.cantitate,
+        p.pret AS pret_produs,
+        (p.pret * d.cantitate) AS pret_total
+    FROM comenzi c
+    JOIN detalii_comenzi d ON c.id = d.id_comanda
+    JOIN produse p ON d.id_produs = p.id
+    WHERE c.id_utilizator = utilizator_id
+    ORDER BY c.data_comenzii DESC;
+END$$
+
+DELIMITER ;
+
+
+CALL comenzi_utilizator(3);
