@@ -1,14 +1,16 @@
-version: '3.8'
 services:
   apache:
-    image: php:8.1-apache
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
     container_name: lamp_apache
     volumes:
-      - ./studenti:/var/www/html
+      - ./student:/var/www/html
     ports:
-      - "8080:80"
+      - "8081:80"
     depends_on:
       - mysql
+
 
   mysql:
     image: mysql:5.7
@@ -16,7 +18,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: studenti
+      MYSQL_DATABASE: Calorifere
       MYSQL_USER: user
       MYSQL_PASSWORD: parola
     ports:
@@ -26,4 +28,3 @@ services:
 
 volumes:
   db_data:
-
