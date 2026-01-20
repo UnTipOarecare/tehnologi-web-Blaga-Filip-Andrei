@@ -1,10 +1,8 @@
 <?php
-// pornim sesiunea imediat (fără output înainte)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// includem DB (presupunem că nu produce output)
 require __DIR__ . '/includes/db.php';
 
 $page_title = "Login";
@@ -25,13 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user) {
             $hashedInput = hash('sha256', $password);
             if (hash_equals($user['parola'], $hashedInput)) {
-                // success: setează sesiunea
                 $_SESSION['user_id'] = (int)$user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['nume'] = $user['nume'] ?? '';
                 $_SESSION['rol'] = $user['rol'] ?? 'client';
 
-                // redirect către cont.php
                 header('Location: cont.php');
                 exit;
             } else {
@@ -43,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// acum includem headerul — aici începe outputul HTML
 require __DIR__ . '/includes/header.php';
 ?>
 <section class="main-content">

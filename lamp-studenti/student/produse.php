@@ -1,10 +1,8 @@
 <?php
-// student/produse.php
 $page_title = "Produse — Magazin Calorifere";
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/db.php';
 
-// --- read categories
 $catStmt = $pdo->query("SELECT id, denumire FROM categorii ORDER BY denumire ASC");
 $categorii = $catStmt->fetchAll();
 
@@ -25,7 +23,7 @@ if (count($selectedCats) > 0) {
 }
 $produse = $stmt->fetchAll();
 
-$clearUrl = strtok($_SERVER["REQUEST_URI"], '?'); // current script path without query
+$clearUrl = strtok($_SERVER["REQUEST_URI"], '?'); 
 ?>
 <main class="grid-layout">
   <section class="main-content">
@@ -69,7 +67,7 @@ $clearUrl = strtok($_SERVER["REQUEST_URI"], '?'); // current script path without
     </section>
   </section>
 
-  <!-- Sidebar: categories filter -->
+  <!-- Sidebar -->
   <aside class="sidebar" aria-labelledby="aside-products">
     <h2 id="aside-products">Filtre</h2>
 

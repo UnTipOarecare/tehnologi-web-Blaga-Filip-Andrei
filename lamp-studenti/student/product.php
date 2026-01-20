@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id'])) {
     $comenziLivrate = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     if ($comenziLivrate) {
-        // 2. verifică dacă produsul există în detalii_comenzi
+        // 2. verifica daca produsul exista in detalii_comenzi
         $in  = implode(',', array_fill(0, count($comenziLivrate), '?'));
         $sql = "
             SELECT 1
@@ -82,7 +82,7 @@ if (isset($_SESSION['user_id'])) {
 
         $hasReceived = (bool)$stmt->fetchColumn();
 
-        // 3. verifică dacă deja a lăsat recenzie
+        // 3. verifica daca deja a lasat recenzie
         $stmt = $pdo->prepare("
             SELECT 1
             FROM recenzii

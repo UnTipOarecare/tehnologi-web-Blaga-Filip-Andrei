@@ -1,10 +1,8 @@
 <?php
-// pornim sesiunea imediat (fără output înainte)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// includem DB (presupunem că nu produce output)
 require __DIR__ . '/includes/db.php';
 
 $page_title = "Inregistrare";
@@ -25,14 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Email invalid.';
 
     if (empty($errors)) {
-        // make sure username is unique
         $stmt = $pdo->prepare("SELECT id FROM user WHERE username = :username LIMIT 1");
         $stmt->execute(['username' => $username]);
         $existing = $stmt->fetch();
         if ($existing) {
             $errors[] = 'Username-ul este deja folosit. Alege altul.';
         } else {
-            // hash password with SHA-256 (to match DB's SHA2 expectation)
             $hashed = hash('sha256', $parola);
 
             $ins = $pdo->prepare("INSERT INTO user (username, parola, nume, email) VALUES (:username, :parola, :nume, :email)");
@@ -43,14 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'nume' => $nume,
                     'email' => $email ?: null
                 ]);
-                // auto-login: set session and redirect to account page
                 $userId = $pdo->lastInsertId();
                 $_SESSION['user_id'] = (int)$userId;
                 $_SESSION['username'] = $username;
                 $_SESSION['nume'] = $nume;
                 $success = true;
 
-                // redirect către cont.php
                 header('Location: cont.php');
                 exit;
             } catch (\PDOException $e) {
@@ -60,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// acum includem headerul — aici începe outputul HTML
 require __DIR__ . '/includes/header.php';
 ?>
 <section class="main-content">

@@ -7,7 +7,6 @@ require __DIR__ . '/includes/header.php';
   <h1>Coșul tău de cumpărături</h1>
 
   <div id="cart-items" style="margin-top:12px;">
-    <!-- cart.js va popula acest container cu imagini dacă există -->
   </div>
 
   <div style="margin-top:18px;">
@@ -16,15 +15,12 @@ require __DIR__ . '/includes/header.php';
       <a href="produse.php" class="btn" style="background:#7f8c8d">Continuă cumpărăturile</a>
 
       <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
-        <!-- logged in: keep the checkout button & hidden POST form (as before) -->
         <button id="checkout-btn" class="btn" type="button">Spre plată</button>
 
-        <!-- optional: if your cart.js uses the checkout-form to POST cart JSON, keep it -->
         <form id="checkout-form" action="plata.php" method="post" style="display:none;">
           <input type="hidden" name="cart" id="checkout-cart" value="">
         </form>
       <?php else: ?>
-        <!-- not logged in: send them to login and return to plata.php afterwards -->
         <a href="login.php?next=plata.php" class="btn" style="background:#2980b9">Autentifică-te pentru plată</a>
       <?php endif; ?>
     </div>

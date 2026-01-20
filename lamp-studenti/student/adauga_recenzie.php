@@ -32,7 +32,7 @@ if (!$comenziLivrate) {
 }
 
 /* -------------------------
-   VERIFICĂ PRODUS ÎN COMANDĂ
+   VERIFICA PRODUS IN COMANDA
 -------------------------- */
 $in = implode(',', array_fill(0, count($comenziLivrate), '?'));
 
